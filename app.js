@@ -8,7 +8,15 @@ const PORT = process.env.PORT || 3000;
 const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database("./db/chinook.sqlite");
 
+app.get("/", (req, res) => {
+  res.set('Content-Type', 'text/html');
+  res.send(`<h1>SQLite Database Exercises</h1>
+            <a href="/sales-per-year"><button type="button">Sales Per Year</button></a>
+            <a href="/invoices-per-country"><button type="button">Invoices Per Country</button></a>`);
+});
+
 app.get("/sales-per-year", (req, res) => {
+  // /sales-per-year?filter[year]=2009,2012
 
   let having = "";
 
